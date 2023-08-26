@@ -18,9 +18,13 @@ def compare_follower(choice,other_option):
 
 print("lets play higher or lower game  !!!")
 choice_result = False
+compareB = get_random_choice()
+score =0
 while(choice_result is not True):
-    compareA = get_random_choice()
+    compareA=compareB
     compareB = get_random_choice()
+    if(compareA == compareB):
+        compareB = get_random_choice()
     print(f"compare A {formal_data(compareA)}")
     print("vs")
     print(f"compare B {formal_data(compareB)}")
@@ -31,8 +35,9 @@ while(choice_result is not True):
     else:
         result = compare_follower(compareB,compareA)
     if (result==1 ):
-        print("you loose")
+        print(f"you loose, your final score is {score}")
         choice_result = True
     else:
-        print("you won !!!")
+        score+=1
+        print(f"you won !!!your score is {score}")
     
