@@ -19,9 +19,5 @@ while quizz.still_has_questions():
         no_of_question_asked += 1
         print(f" {score}/{no_of_question_asked}  ")
     else:
-         no_of_question_asked += 1
-         print(f" {score}/{no_of_question_asked}  ")
-
-
-
-
+        no_of_question_asked += 1
+        print(f" {score}/{no_of_question_asked}  ")
