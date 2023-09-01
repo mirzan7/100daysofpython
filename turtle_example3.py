@@ -19,7 +19,7 @@ def find_angle(side):
     return 180-(total_internal_angle/side)
 
 angle = 0
-for i in range(3, 10):
+for i in range(3, 25):
     red = rdm.random()
     green = rdm.random()
     blue = rdm.random()
