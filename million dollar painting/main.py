@@ -18,7 +18,7 @@ t.left(135)
 number_of_dots = 100
 for i in range(1, number_of_dots + 1):
     color = t.color(random.choice(color_list))
-    t.dot(5,color)
+    t.dot(5, color)
 
     t.forward(20)
     if i % 10 == 0:
