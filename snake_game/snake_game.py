@@ -34,12 +34,10 @@ while is_game_live:
 
     # collision .
     if snake.head.xcor() > 295 or snake.head.xcor() < -295 or snake.head.ycor() > 295 or snake.head.ycor() < -295:
-        is_game_live = False
-        score.game_over()
+        score.reset_score()
 
     for body in snake.segment[1:]:
         if snake.head.distance(body) < 10:
-            is_game_live = False
-            score.game_over()
+            score.reset_score()
 
 screen.exitonclick()
