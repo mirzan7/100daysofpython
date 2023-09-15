@@ -16,7 +16,7 @@ while number_of_state_found < 50:
     user_input = screen.textinput(f"{n}/50 states left","Enter the name of the state :").title()
     if user_input == "Exit":
         missing_state = [state for state in all_states if state not in guessed_state]
-          break
+        break
     if user_input in all_states:
         guessed_state.append(user_input)
         state_data = data[data["state"].isin([user_input])]
