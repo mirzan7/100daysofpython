@@ -18,8 +18,11 @@
 
 fruits = ["apple", "pear", "orange"]
 def make_pie(index):
-    fruit = fruits[index]
-    print(fruit+" pie")
+    try:
+        fruit = fruits[index]
+    except IndexError:
+        print("fruit error")
+    else:
+        print(fruit+" pie")
 
 make_pie(4)
-if
