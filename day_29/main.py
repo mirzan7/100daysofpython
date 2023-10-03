@@ -3,7 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 import random
 import pyperclip
-
+import json
 letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
            'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
            'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
@@ -29,15 +29,19 @@ def generate_password():
 
 # -----------------------------------------save password--------------------------------------------
 def add_password_to_file():
-    if len(website_input.get()) == 0 or len(username_input.get()) == 0 or len(password_input.get()) == 0:
+    website = website_input.get()
+    email = username_input.get()
+    password = password_input.get()
+    new_data = {
+        website: {
+            "email": email,
+            "password": password,
+    }}
+    if len(website) == 0 or len(password) == 0:
         messagebox.showerror("error", "you have missing parameters")
     else:
-        is_ok = messagebox.askokcancel(website_input.get(),
-                                       f"Are you sure?\nusername : {username_input.get()}\npassword : "
-                                       f"{password_input.get()}")
-        if is_ok:
-            with open("password_manager.txt", 'a') as manager:
-                manager.write(f"{website_input.get()}|{username_input.get()}|{password_input.get()}\n")
+        with open("password_manager.json", 'w') as manager:
+            json.dump(new_data, manager, indent=4)
             website_input.delete(0, END)
             password_input.delete(0, END)
 
