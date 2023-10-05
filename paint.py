@@ -25,6 +25,7 @@ def move_back():
 
 def clear():
     t.home()
+    
     t.clear()
 
 
