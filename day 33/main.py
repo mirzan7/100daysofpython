@@ -1,6 +1,7 @@
 import datetime as dt
 import requests
 import smtplib
+import time
 
 MY_LAT = 13.0878
 MY_LONG = 80.2785
@@ -35,13 +36,14 @@ def is_night():
     time_now = dt.datetime.now().hour
     if time_now >= sunset or time_now <= sunrise:
         return True
-
-if is_iss_near() and is_night():
-    connection = smtplib.SMTP("smtp.mail.yahoo.com")
-    connection.starttls()
-    connection.login(MY_EMAIL, MY_PASSWORD)
-    connection.sendmail(
-        from_addr=MY_EMAIL,
-        to_addrs=MY_ANOTHER_EMAIL,
-        msg = "Subject:Look Up \n\n the iss is above you in the sky"
-    )
+while True:
+    time.sleep(60)
+    if is_iss_near() and is_night():
+        connection = smtplib.SMTP("smtp.mail.yahoo.com")
+        connection.starttls()
+        connection.login(MY_EMAIL, MY_PASSWORD)
+        connection.sendmail(
+            from_addr=MY_EMAIL,
+            to_addrs=MY_ANOTHER_EMAIL,
+            msg = "Subject:Look Up \n\n the iss is above you in the sky"
+        )
