@@ -33,7 +33,7 @@ class FlightSearch:
             "flight_type": "round",
             "one_for_city": 1,
             "max_stopovers": 0,
-            "curr": "GBP"
+            "curr": "INR"
         }
         response = requests.get(url=f"{tequila_webpage_endpoint}/v2/search", headers=header, params=query)
         # response.raise_for_status()

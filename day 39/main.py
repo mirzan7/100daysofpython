@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from pprint import pprint
 from notification_manger import NotificationManager
 
-departure_location = "LON"
+departure_location = "MAA"
 data_manager = DataManager()
 flight_search = FlightSearch()
 sheet_data = data_manager.get_destination_data()
@@ -25,5 +25,6 @@ six_month_from_tomorrow = datetime.now() + timedelta(days=(6*30))
 
 for row in sheet_data:
     lowest_price = flight_search.check_flight(departure_location, row["iataCode"], tomorrow, six_month_from_tomorrow)
-    if flight_data.price < destination["lowestPrice"]:
+    if lowest_price.price < row["lowestPrice"]:
+        print("send sms")
 
