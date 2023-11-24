@@ -3,9 +3,9 @@ from datetime import datetime
 import csv
 
 website_endpoint = "https://trackapi.nutritionix.com/v2/natural/exercise"
-sheet_endpoint = "https://api.sheety.co/0a26582a15f860d254d510df8cebe822/myWorkouts/workouts"
-APP_ID = "d9e63755"
-API_KEY = "5f3bd84bdf4ea1f40d3c47560b57940e"
+sheet_endpoint = "https://api.sheety.co/0=/myWorkouts/workouts"
+APP_ID = "="
+API_KEY = "="
 GENDER = "male"
 WEIGHT_KG = "93"
 HEIGHT = "192"
