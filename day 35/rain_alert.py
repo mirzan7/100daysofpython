@@ -1,8 +1,8 @@
 import requests
 from twilio.rest import Client
 will_rain = None
-api_key = "f4c266e099a12f1bc1df0b5a1283be51"
-account_sid = 'ACfe03f23f7b4709de8e7368889b3ff7ac'
+api_key = "f="
+account_sid = '='
 auth_token = '[AuthToken]'
 
 parameters = {
