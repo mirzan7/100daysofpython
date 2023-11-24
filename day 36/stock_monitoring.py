@@ -10,12 +10,12 @@ NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 stock_parameters ={
     "function":"TIME_SERIES_DAILY",
     "symbol": STOCK_NAME,
-    "apikey": "Z73O7VFKRF1WSNLU"
+    "apikey": "="
 }
 
 news_parameters = {
     "q": COMPANY_NAME,
-    "apiKey": "1a987a2841d34dd696cbdffdc7fff73e"
+    "apiKey": "="
 }
 
 response = requests.get(url=STOCK_ENDPOINT, params=stock_parameters)
