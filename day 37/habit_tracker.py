@@ -5,8 +5,8 @@ today = datetime.today()
 formatted_date_today = today.strftime("%Y%m%d")
 print(formatted_date_today)
 
-USER_NAME = "npmirzanmiraj"
-TOKEN = "1q2w3e4r5t6y"
+USER_NAME = "="
+TOKEN = "="
 pixela_endpoint = "https://pixe.la/v1/users"
 
 pixela_parameters = {
