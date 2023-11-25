@@ -1,0 +1,23 @@
+body {
+    font-family: 'Source Code Pro', monospace;
+    color: #fff;
+    background-color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+/* Add your additional styling here */
+/* e.g., styles for sections, links, images, etc. */
+
+section {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #333;
+}
+
+h2 {
+    color: #00f; /* Change the color as needed */
+}
+p {
+    margin-bottom: 15px;
+}
