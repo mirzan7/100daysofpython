@@ -8,6 +8,6 @@ all_of_the_anchor_tag = soup.find_all(name="a")
 # for tag in all_of_the_anchor_tag:
 #     print(tag.get("href"))
 
-header = soup.find(name="span")
-print(header)
+header = soup.find(name="span", class_="down")
+print(header.get_text())
 
