@@ -1,49 +1,56 @@
+import spotipy
+from spotipy.oauth2 import SpotifyOAuth
 import requests
 from bs4 import BeautifulSoup
 from base64 import b64encode
 
 BILLBOARD_ENDPOPINT ="https://www.billboard.com/charts/hot-100/"
-SPOTIFY_CLIENT_ID =
-SPOTIFY_CLIENT_SECRET_KEY =
+SPOTIFY_CLIENT_ID = "5be6fdb36f70470e8522ed88dc51e723"
+SPOTIFY_CLIENT_SECRET_KEY = "65a6fc25b90440e8ae4dd284780dbb07"
 AUTH_URL = "https://accounts.spotify.com/api/token"
 PLAYLIST_CREATE_URL = "https://api.spotify.com/v1/users/mirzan/playlists"
 USER_ID ="mirzan"
-#
-# date = input("which year do you want to travel to? Type the date in this format YYYY-MM-DD :")
-# response = requests.get(f"{BILLBOARD_ENDPOPINT}{date}/")
-# data = response.text
-# soup = BeautifulSoup(data,"html.parser")
-# songs = soup.find_all(name='h3', class_="c-title")
-# # print(songs)
-# songs_list = []
-# for song in songs:
-#     song_name = song.get_text().strip()
-#     songs_list.append(song_name)
 
-# credentials = f"{SPOTIFY_CLIENT_ID}:{SPOTIFY_CLIENT_SECRET_KEY}"
-# base64_credentials = b64encode(credentials.encode()).decode('utf-8')
-#
-# auth_headers = {
-#     'Authorization': f'Basic {base64_credentials}',
-# }
-# auth_data = {
-#     'grant_type': 'client_credentials',
-# }
+date = input("which year do you want to travel to? Type the date in this format YYYY-MM-DD :")
+response = requests.get(f"{BILLBOARD_ENDPOPINT}{date}/")
+data = response.text
 
-parameters = {
+soup = BeautifulSoup(data, "html.parser")
+song_names = soup.select("li ul li h3")
+songs_name_list = [song.getText().strip() for song in song_names]
+print(songs_name_list)
 
-}
-auth_response = requests.post(AUTH_URL, headers=auth_headers, data=auth_data)
-auth_data = auth_response.json()
-access_token = auth_data['access_token']
-echo = {
-    "name": f"{"22"} top 100",
-    "description": f"New playlist for the date {"22"}",
-    "public": "false"
-}
-playlist_create_headers = {
-    'Authorization': f'Bearer {access_token}',
-    'Content-Type': 'application/json'
-}
-response = requests.post(url=f"https://api.spotify.com/v1/users/{SPOTIFY_CLIENT_ID}/playlists", headers=playlist_create_headers, json=echo)
-print(response.text)
+sp = spotipy.Spotify(
+    auth_manager=SpotifyOAuth(
+        scope="playlist-modify-private",
+        redirect_uri="http://example.com",
+        client_id=SPOTIFY_CLIENT_ID,
+        client_secret=SPOTIFY_CLIENT_SECRET_KEY,
+        show_dialog=True,
+        cache_path="token.txt"
+    )
+)
+user_id = sp.current_user()["id"]
+print(user_id)
+
+song_uris = []
+year = date.split("-")[0]
+for song in songs_name_list:
+    result = sp.search(q=f"track:{song} year:{year}", type="track")
+    #print(result)
+    try:
+        uri = result["tracks"]["items"][0]["uri"]
+        song_uris.append(uri)
+    except IndexError:
+        print(f"{song} doesn't exist in spotify. skipped.")
+
+print(song_uris)
+
+playlist = sp.user_playlist_create(
+    user=user_id,
+    name=f"{date} top 100 songs",
+    public=True,
+)
+print(playlist)
+sp.playlist_add_items(playlist_id=playlist["id"], items=song_uris)
+
