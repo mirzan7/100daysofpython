@@ -5,8 +5,8 @@ from bs4 import BeautifulSoup
 from base64 import b64encode
 
 BILLBOARD_ENDPOPINT ="https://www.billboard.com/charts/hot-100/"
-SPOTIFY_CLIENT_ID = "5be6fdb36f70470e8522ed88dc51e723"
-SPOTIFY_CLIENT_SECRET_KEY = "65a6fc25b90440e8ae4dd284780dbb07"
+SPOTIFY_CLIENT_ID = ""
+SPOTIFY_CLIENT_SECRET_KEY = ""
 AUTH_URL = "https://accounts.spotify.com/api/token"
 PLAYLIST_CREATE_URL = "https://api.spotify.com/v1/users/mirzan/playlists"
 USER_ID ="mirzan"
