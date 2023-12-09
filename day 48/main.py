@@ -4,6 +4,9 @@ from pprint import pprint
 from bs4 import BeautifulSoup
 
 buy_price = 500
+your_email = ""
+your_smtp_address = ""
+your_password = ""
 
 product_link = "https://www.amazon.com/Google-Pixel-Unlocked-Smartphone-Advanced/dp/B0CGT6RLT7?ref_=Oct_DLandingS_D_cf754241_2&th=1"
 header = {
